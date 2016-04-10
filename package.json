@@ -1,0 +1,56 @@
+{
+  "name": "patchkit-form-pub-invite",
+  "version": "1.0.0",
+  "description": "Modal form for using Pub-server invites",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patchkit/patchkit-form-pub-invite.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Paul Frazee <pfrazee@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/patchkit/patchkit-form-pub-invite/issues"
+  },
+  "homepage": "https://github.com/patchkit/patchkit-form-pub-invite#readme",
+  "dependencies": {
+    "patchkit-mdl-spinner": "^1.0.0",
+    "react": "^0.14.6",
+    "ssb-ref": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0",
+    "patchkit-modal": "^1.0.3"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "envify",
+        {
+          "global": true
+        }
+      ],
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015",
+            "stage-0",
+            "react"
+          ]
+        }
+      ]
+    ]
+  }
+}
