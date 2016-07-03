@@ -21,6 +21,7 @@
   "homepage": "https://github.com/patchkit/patchkit-form-pub-invite#readme",
   "dependencies": {
     "patchkit-mdl-spinner": "^1.0.0",
+    "patchwork-translations": "^1.0.0",
     "react": "^0.14.6",
     "ssb-ref": "^2.3.0"
   },

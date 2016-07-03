@@ -2,6 +2,7 @@ import React from 'react'
 import ref from 'ssb-ref'
 import MDLSpinner from 'patchkit-mdl-spinner'
 import { InviteErrorExplanation, InviteErrorHelp } from './help'
+import t from 'patchwork-translations'
 
 export default class PubInvite extends React.Component {
   static propTypes = {
@@ -49,12 +50,12 @@ export default class PubInvite extends React.Component {
 
       // validate
       if (!code)
-        return this.setState({ isProcessing: false, error: { message: 'Invite code not provided' } })
+        return this.setState({ isProcessing: false, error: { message: t('invite.CodeNotProvided') } })
       if (!ref.isInvite(code))
-        return this.setState({ isProcessing: false, error: { message: 'Invalid invite code' } })
+        return this.setState({ isProcessing: false, error: { message: t('invite.InvalidCode') } })
 
       // use the invite
-      this.setState({ info: 'Contacting server with invite code, this may take a few moments...' })
+      this.setState({ info: t('invite.Contacting') })
       this.context.ssb.invite.accept(code, err => {
         if (err) {
           console.error(err)
@@ -74,11 +75,11 @@ export default class PubInvite extends React.Component {
     const helpText = (this.state.error) ? <InviteErrorHelp error={this.state.error} /> : ''
 
     return <div>
-      <h1>Join a Pub</h1>
-      <h3>Pubs host your messages online, and connect you globally.</h3>
+      <h1>{t('invite.JoinPub')}</h1>
+      <h3>{t('invite.JoinPubInfo')}</h3>
       <form className="fullwidth" onSubmit={e=>e.preventDefault()}>
         <fieldset>
-          <input type="text" value={this.state.code} onChange={this.onChange.bind(this)} placeholder="Enter the invite code here" />
+          <input type="text" value={this.state.code} onChange={this.onChange.bind(this)} placeholder={t('invite.EnterCode')}/>
           <div>{msg}</div>
           <div>{helpText}</div>
         </fieldset>
@@ -86,19 +87,19 @@ export default class PubInvite extends React.Component {
       { this.state.isProcessing ? <MDLSpinner /> : '' }
       <div className="faq text-center">
         { this.props.gotoNextStep ?
-          <div><a onClick={this.props.gotoNextStep}>You can skip this step</a>, but your messages {"won't"} reach outside the WiFi until you do it.</div>
+          <div><a onClick={this.props.gotoNextStep}>{t('invite.CanSkip')}</a>{t('invite.CanSkip2')}</div>
           : '' }
         <div className="faq-entry">
-          <div>{"What's"} an invite code?</div>
-          <div>An invite code tells the Pub to join your contacts.</div>
+          <div>{t('invite.q.WhatIs')}</div>
+          <div>{t('invite.a.WhatIs')}</div>
         </div>
         <div className="faq-entry">
-          <div>Where can I get an invite code?</div>
-          <div>You should ask a Pub operator. Many of them hang out in #scuttlebutt on Freenode.</div>
+          <div>{t('invite.q.WhereCan')}</div>
+          <div>{t('invite.a.WhereCan')}</div>
         </div>
         <div className="faq-entry">
-          <div>Can I create a Pub?</div>
-          <div>Yes, but it requires a public server. If you have one, you can <a href="http://ssbc.github.io/docs/scuttlebot/howto-setup-a-pub.html" target="_blank">follow&nbsp;this&nbsp;guide</a>.</div>
+          <div>{t('invite.q.CanCreate')}</div>
+          <div>{t('invite.a.CanCreate1')}<a href="http://ssbc.github.io/docs/scuttlebot/howto-setup-a-pub.html" target="_blank">{t('invite.a.CanCreate2')}</a>{t('invite.a.CanCreate3')}</div>
         </div>
       </div>
     </div>

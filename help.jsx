@@ -1,4 +1,5 @@
 import React from 'react'
+import t from 'patchwork-translations'
 
 export class InviteErrorExplanation extends React.Component {
   render() {
@@ -8,30 +9,30 @@ export class InviteErrorExplanation extends React.Component {
     const msg = this.props.error.message.toLowerCase()
 
     if (~msg.indexOf('invite code not provided'))
-      return <div className="error">The invite code is required.</div>
+      return <div className="error">{t('invite.error.codeRequired')}</div>
 
     if (~msg.indexOf('invite not accepted'))
-      return <div className="error">The invite code was not accepted.</div>
+      return <div className="error">{t('invite.error.notAccepted')}</div>
 
     if (~msg.indexOf('incorrect or expired') || ~msg.indexOf('has expired'))
-      return <div className="error">The invite code is mis-issued or expired.</div>
+      return <div className="error">{t('invite.error.expired')}</div>
 
     if (~msg.indexOf('invalid') || ~msg.indexOf('feed to follow is missing') || ~msg.indexOf('may not be used to follow another key'))
-      return <div className="error">Something is wrong with the invite code.</div>
+      return <div className="error">{t('invite.error.somethingWrong')}</div>
 
     if (~msg.indexOf('pub server did not have correct public key'))
-      return <div className="error">Connection failure.</div>
+      return <div className="error">{t('invite.error.connectionFailure')}</div>
 
     if (~msg.indexOf('unexpected end of parent stream'))
-      return <div className="error">Failed to connect to the pub server.</div>
+      return <div className="error">{t('invite.error.failedConnect')}</div>
 
     if (~msg.indexOf('ENOTFOUND'))
-      return <div className="error">The pub server could not be found.</div>
+      return <div className="error">{t('invite.error.notFound')}</div>
 
     if (~msg.indexOf('already following'))
-      return <div className="error">You are already followed by this pub server.</div>
+      return <div className="error">{t('invite.error.alreadyFollowed')}</div>
 
-    return <div className="error">Sorry, an unexpected error occurred: {msg}</div>
+    return <div className="error">{t('invite.error.unexpectedError', {msg})}</div>
   }
 }
 
@@ -44,22 +45,22 @@ export class InviteErrorHelp extends React.Component {
     let helpText = false
 
     if (~msg.indexOf('invite not accepted'))
-      helpText = 'The invite code was not accepted. It may have been used already. Ask the pub-operator for a new code and try again.'
+      helpText = t('invite.help.codeRequired')
 
     if (~msg.indexOf('incorrect or expired') || ~msg.indexOf('has expired'))
-      helpText = 'The invite code is incorrect or expired. Make sure you copy/pasted it correctly. If you did, ask the pub-operator for a new code and try again.'
+      helpText = t('invite.help.notAccepted')
 
     if (~msg.indexOf('invalid') || ~msg.indexOf('feed to follow is missing') || ~msg.indexOf('may not be used to follow another key'))
-      helpText = 'The invite code is malformed. Make sure you copy/pasted it correctly. If you did, ask the pub-server owner for a new code and try again.'
+      helpText = t('invite.help.somethingWrong')
 
     if (~msg.indexOf('pub server did not have correct public key'))
-      helpText = 'The pub server did not identify itself correctly for the invite code. Ask the pub-operator for a new code and try again.'
+      helpText = t('invite.help.connectionFailure')
 
     if (~msg.indexOf('could not connect to server') || ~msg.indexOf('unexpected end of parent stream'))
-      helpText = 'Failed to connect to the pub server. Check your connection, make sure the pub server is online, and try again.'
+      helpText = t('invite.help.failedConnect')
 
     if (~msg.indexOf('ENOTFOUND'))
-      helpText = 'Check your connection, make sure the pub server is online, and try again. If this issue persists, check with the pub operator.'
+      helpText = t('invite.help.notFound')
 
     if (!helpText)
       return <span/>
