@@ -1,6 +1,6 @@
 {
   "name": "patchkit-form-pub-invite",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Modal form for using Pub-server invites",
   "main": "index.jsx",
   "scripts": {
